@@ -1,0 +1,456 @@
+/* General Styles */
+:root {
+  --primary-bg: #121212;
+  --secondary-bg: #1f1f1f;
+  --tertiary-bg: #282828;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --accent-color: #6200ee;
+  --accent-color-hover: #7c4dff;
+  --success-color: #00c853;
+  --warning-color: #ffd600;
+  --error-color: #ff3d00;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  padding-bottom: 70px;
+  margin: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  padding: 15px;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  border-bottom: 1px solid var(--tertiary-bg);
+  background: linear-gradient(135deg, var(--secondary-bg) 30%, var(--tertiary-bg) 100%);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-image: url('path-to-header-background.jpg');
+  background-size: cover;
+  /* background-blur: 10px; */
+  background-blend-mode: 10px;
+  color: var(--text-primary);
+}
+
+/* Card Styles */
+.card {
+  background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--tertiary-bg) 100%);
+  border: none;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.card:hover::before {
+  transform: rotate(45deg) translate(50%, 50%);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Styles */
+.btn-primary, .btn-secondary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary::after, .btn-secondary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+.btn-primary:focus:not(:active)::after,
+.btn-secondary:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  background-color: var(--accent-color-hover);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Game Grid */
+.game-box {
+  background-color: var(--tertiary-bg);
+  border-radius: 16px;
+  padding-top: 40%; /* Adjusted height */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Ensure the image covers the entire card */
+  object-fit: cover;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.game-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.game-box:hover img {
+  filter: brightness(1.1);
+  transform: scale(1.1);
+}
+
+.game-title {
+  position: absolute;
+  bottom: 10px; /* Adjust this value to control the vertical position */
+  left: 10px; /* Adjust this value to control the horizontal position */
+  color: #ffcc00; /* Bright color for visibility */
+  font-size: 1.5rem; /* Increased font size for better visibility */
+  font-weight: bold; /* Make the text bold */
+  font-style: italic; /* Italic style */
+  font-family: 'Arial', sans-serif; /* Change to a preferred font if needed */
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker background for better contrast */
+  padding: 10px;
+  border-radius: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add a text shadow for better readability */
+}
+
+
+
+
+
+/* Task Section */
+.task-section {
+  margin: 20px;
+  padding: 25px;
+  background-color: var(--secondary-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Task List */
+.stars-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual Task */
+.stars-list li {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: var(--tertiary-bg);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid var(--tertiary-bg);
+}
+
+/* Hover Effect */
+.stars-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+  border-color: var(--accent-color);
+}
+
+/* Star Icon */
+.star-icon {
+  color: gold; /* Gold color for stars */
+  font-size: 1.5rem; /* Adjust size as needed */
+  margin-right: 5px; /* Adjust spacing as needed */
+}
+
+/* Task Action */
+.task-action {
+  color: var(--accent-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.task-action:hover {
+  color: var(--accent-color-hover);
+  transform: scale(1.05);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  background-color: var(--secondary-bg);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px;
+  border-top: 1px solid var(--tertiary-bg);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.bottom-nav button {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: none;
+  font-size: 1.2rem;
+  text-align: center;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.bottom-nav button::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.bottom-nav button:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.bottom-nav button:focus {
+  outline: none;
+}
+
+.bottom-nav button:hover {
+  color: var(--text-primary);
+  transform: translateY(-3px);
+}
+
+/* Icon Spacing */
+.bottom-nav i {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.bottom-nav span {
+  font-size: 0.9rem;
+  display: block;
+}
+
+/* Task Section */
+.task-section {
+  margin: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #2a2a2a, #3d3d3d);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  color: var(--text-primary);
+}
+
+.task-section h2 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  border-bottom: 3px solid var(--accent-color);
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list li {
+  background-color: var(--tertiary-bg);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.task-list li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.task-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--accent-color);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.task-icon i {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-info h3 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 700;
+}
+
+.task-info p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 5px 0;
+}
+
+.task-action {
+  color: var(--accent-color);
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.task-action:hover {
+  color: var(--accent-color-hover);
+  transform: scale(1.05);
+}
+
+/* Profile Section */
+.profile-section {
+  padding: 20px;
+  background-color: var(--secondary-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--tertiary-bg);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 3px solid var(--text-primary);
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.profile-level {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Progress Bar */
+.progress-container {
+  background-color: var(--tertiary-bg);
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  background-color: var(--tertiary-bg);
+  border-radius: 10px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: var(--success-color);
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease;
+}
